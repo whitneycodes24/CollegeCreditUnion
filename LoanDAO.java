@@ -9,18 +9,18 @@ import java.util.List;
 public class LoanDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager entityManager;     //handles database interactions
 
     // Method to save a new Loan
-    @Transactional
+    @Transactional                          //handles it as one transaction
     public void save(Loan loan) {
-        entityManager.persist(loan);
+        entityManager.persist(loan);        //save loan to database
     }
 
     // Method to update an existing Loan
     @Transactional
-    public void update(Loan loan) {
-        entityManager.merge(loan);
+    public void update(Loan loan) {          //takes loan object as a parameter
+        entityManager.merge(loan);          //updates loan in database
     }
 
     // Method to find a Loan by its ID
@@ -29,7 +29,7 @@ public class LoanDAO {
     }
 
     // Method to get all Loans
-    public List<Loan> findAll() {
+    public List<Loan> findAll() {            //retrieve all loan entries in the database
         return entityManager.createQuery("SELECT l FROM Loan l", Loan.class).getResultList();
     }
 
